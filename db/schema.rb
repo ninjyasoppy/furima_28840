@@ -39,6 +39,11 @@ ActiveRecord::Schema.define(version: 2020_08_25_041647) do
     t.text "image"
     t.string "price"
     t.boolean "soldout"
+    t.string "category_id"
+    t.string "sales_status_id"
+    t.string "shipping_fee_status_id"
+    t.string "prefecture_id"
+    t.string "scheduled_delivery_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
