@@ -14,6 +14,7 @@
 ### Association
 
 - has_many :items
+- has_many :order
 
 ## itemテーブル
 
@@ -34,6 +35,7 @@
 
 - belongs_to :user
 - has_one_attached :image
+- has_one :order
 
 ## order テーブル
 
@@ -46,14 +48,14 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :addresses
+- has_one :address
 
 ## address テーブル
 
 | Column  | Type       | Options             |
 | ------- | ---------- | ------------------- |
 | postal_cord| string | null: false |
-| prefecture | integer | null: false |
+| prefecture_id | integer | null: false |
 | city    | string | null: false |
 | addresses| string | null: false |
 | building | string |           |
