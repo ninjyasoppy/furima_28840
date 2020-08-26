@@ -7,8 +7,10 @@
 | nickname | string | null: false |
 | email    | string | null: false |
 | password | string | null: false |
-| name     | string | null: false |
-| name_kana| string | null: false |
+| family_name | string | null: false |
+| first_name | string | null: false |
+| family_name_kana | string | null: false |
+| first_name_kana | string | null: false |
 | birthday | string | null: false |
 
 ### Association
@@ -30,7 +32,7 @@
 | sold_out | integer | null: false |
 | prefecture_id     | integer | null: false |
 | scheduled_delivery_id | integer | null: false |
-| user   | string | null: false, foreign_key: true |
+| user   | reference | null: false, foreign_key: true |
 ### Association
 
 - belongs_to :user
