@@ -47,16 +47,12 @@
 
 - belongs_to :item
 - belongs_to :user
-- belongs_to :addresses
+- has_one :addresses
 
 ## address テーブル
 
 | Column  | Type       | Options             |
 | ------- | ---------- | ------------------- |
-| card_number | string | null: false |
-| cord_exp_month    | string | null: false |
-| card_exp_year | string | null: false |
-| card_cvc     | string | null: false |
 | postal_cord| string | null: false |
 | prefecture | string | null: false |
 | city    | string | null: false |
@@ -64,3 +60,4 @@
 | building | string |           |
 | phone_number | string | null: false |
 ### Association
+belongs_to : order
