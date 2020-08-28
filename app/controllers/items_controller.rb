@@ -1,9 +1,11 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new ,:create]
   def index
     @item = Item.all
   end
 
   def new
+    redirect_to controller: :devise, action: :new unless user_signed_in?
     @item = Item.new
   end
   def create
