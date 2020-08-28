@@ -5,12 +5,19 @@ class ItemsController < ApplicationController
   end
 
   def new
-    redirect_to controller: :devise, action: :new unless user_signed_in?
     @item = Item.new
   end
+  # def create
+  #   Item.create(item_params)
+  #   redirect_to root_path
+  # end
   def create
-    Item.create(item_params)
-    redirect_to root_path
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
