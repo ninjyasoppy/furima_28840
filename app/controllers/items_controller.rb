@@ -1,16 +1,13 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new ,:create]
   def index
-    @item = Item.all
+
   end
 
   def new
     @item = Item.new
   end
-  # def create
-  #   Item.create(item_params)
-  #   redirect_to root_path
-  # end
+
   def create
     @item = Item.new(item_params)
     if @item.save
