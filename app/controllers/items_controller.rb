@@ -25,6 +25,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    Item.find(params[:id]).destroy
+    redirect_to root_path
+  end
+
   def create
     @item = Item.new(item_params)
     if @item.save
