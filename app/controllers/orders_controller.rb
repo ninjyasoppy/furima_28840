@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def create#number,exp_month,exp_year,cvc,postal_cord,prefecture_id,city,addresses,building,phone_number,item_id
+  def create
     @order = Order.new(item_id: order_params[:item_id], user_id: order_params[:user_id])
     if @order.valid?
       pay_item
@@ -21,14 +21,14 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params#postal_cord,prefecture_id,city,addresses,building,phone_number,token,item_id
+  def order_params
     @item = Item.find(params[:item_id])
     params.permit(:item_id,:token).merge(user_id: current_user.id)
   
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # PAY.JPテスト秘密鍵
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,
       card: order_params[:token],
