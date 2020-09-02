@@ -35,4 +35,3 @@ class OrdersController < ApplicationController
     )
   end
 end
- #postal_cord prefecture_id city addresses building phone_number        token item_id
