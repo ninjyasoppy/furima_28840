@@ -9,7 +9,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(item_id: order_params[:item_id], user_id: order_params[:user_id])
+    @item = Item.find(params[:item_id])
+    @order = OrderAddress.new(order_params)
     if @order.valid?
       pay_item
       @order.save
@@ -22,9 +23,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    @item = Item.find(params[:item_id])
-    params.permit(:item_id,:token).merge(user_id: current_user.id)
-  
+    params.permit(:item_id, :token, :postal_cord, :prefecture_id, :city, :addresses, :building, :phone_number).merge(user_id: current_user.id)
   end
 
   def pay_item
@@ -36,3 +35,4 @@ class OrdersController < ApplicationController
     )
   end
 end
+ #postal_cord prefecture_id city addresses building phone_number        token item_id
