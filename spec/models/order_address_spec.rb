@@ -6,9 +6,8 @@ RSpec.describe OrderAddress, type: :model do
     item = FactoryBot.build(:item , user_id: user.id)
     item.image = fixture_file_upload('public/images/test.jpeg')
     item.save
-    @order_address = FactoryBot.build(:order_address)
-    @order_address.item_id = item.id
-    @order_address.user_id = user.id
+    @order_address = FactoryBot.build(:order_address, item_id: item.id, user_id: user.id)
+
   end
   it "全てのデータが存在していればデータは保存出来る" do
     expect(@order_address).to be_valid
@@ -43,16 +42,17 @@ RSpec.describe OrderAddress, type: :model do
     @order_address.valid?
     expect(@order_address.errors.full_messages).to include("Addresses can't be blank")
   end
-
-  it "建物名がなくても登録できる" do
-    @order_address.building = nil
-    expect(@order_address).to be_valid
-  end
   
   it "電話番号がないと登録できない" do
     @order_address.phone_number = nil
     @order_address.valid?
     expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
+  end
+
+  it "電話番号にハイフンがあると登録できない" do
+    @order_address.phone_number = "06-12341234"
+    @order_address.valid?
+    expect(@order_address.errors.full_messages).to include("Phone number is invalid")
   end
 
   it "tokenがないと登録できない" do
