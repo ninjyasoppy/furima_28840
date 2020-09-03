@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index,:create]
-
+  before_action :sold_out, only: [:index,:create]
   def index 
     @order = OrderAddress.new
     @item = Item.find(params[:item_id])
@@ -34,5 +34,12 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency:'jpy'
     )
+  end
+
+  def sold_out
+    @item = Item.find(params[:item_id])
+    if @item.order != nil
+      redirect_to root_path
+    end
   end
 end
