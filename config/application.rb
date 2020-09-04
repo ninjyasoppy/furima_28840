@@ -6,6 +6,10 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+class ActiveHash::Base
+  extend ActiveModel::Translation
+end
+
 module Furima28840
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
