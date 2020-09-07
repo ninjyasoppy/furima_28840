@@ -93,6 +93,18 @@
   max-height: 200px;
   max-width: 200px;
 }
+
+.select{
+  background-color: rgb(240, 236, 236);
+  border: 1px solid black;
+  padding: 2px;
+  width: 110px;
+  text-align: center;
+}
+
+.hidden{
+  display: none;
+}
 /* /出品画像 */
 
 /* 商品名と商品説明 */
